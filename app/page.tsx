@@ -1,95 +1,132 @@
-import Image from 'next/image'
-import styles from './page.module.css'
-
+"use client";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import styles from "./page.module.css";
+import {
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  IconButton,
+  InputAdornment,
+  OutlinedInput,
+  Typography,
+} from "@mui/material";
+import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { usePost } from "./customHooks";
 export default function Home() {
+  const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [data, callApi, isLoading, errMessage] = usePost();
+  const [formValues, setFormValues] = useState({
+    email: "",
+    password: "",
+  });
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    callApi(formValues, "/auth/signin");
+    //ctx.login(formValues);
+  };
+
+  useEffect(()=>{
+    if(data.email === "glenntedd@gmail.com"){
+      console.log("done");
+      
+    router.push("/qr");
+    }
+
+  },[data]);
+
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+
+    setFormValues({
+      ...formValues,
+      [name]: value,
+    });
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (
+    event: React.MouseEvent<HTMLButtonElement>
+  ) => {
+    event.preventDefault();
+  };
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
+    <Box
+      className={styles.main}
+      sx={{ display: "flex", alignItems: "center", justifyContent: "center", overflowY:"auto" }}
+      margin={0}
+    >
+      <Grid container spacing={2} className={styles.glass} width={"50vh"}>
+        <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          <FormControl variant="outlined" fullWidth sx={{ padding: "20px" }}>
+            <Typography component="label" fontSize="16px" lineHeight="2">
+              Your Email Address
+            </Typography>
+            <OutlinedInput
+              required
+              id="outlined-required"
+              type="email"
+              name="email"
+              placeholder="abc@gmail.com"
+              onChange={handleInputChange}
+              sx={{
+                borderRadius: "13px",
+                backgroundColor: "white",
+                marginBottom: "40px",
+              }}
             />
-          </a>
-        </div>
-      </div>
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+            <FormControl variant="outlined">
+              <Typography component="label" fontSize="16px" lineHeight="2">
+                Your Password
+              </Typography>
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
+              <OutlinedInput
+                id="outlined-adornment-password"
+                type={showPassword ? "text" : "password"}
+                onChange={handleInputChange}
+                name="password"
+                sx={{ borderRadius: "13px", backgroundColor: "white" }}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle password visibility"
+                      onClick={handleClickShowPassword}
+                      onMouseDown={handleMouseDownPassword}
+                      edge="end"
+                    >
+                      {showPassword ? <VisibilityOff /> : <Visibility />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+              />
+            </FormControl>
 
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
+            <Typography
+              component="a"
+              textAlign="end"
+              marginBottom={2}
+              marginTop={2}
+              color="primary.main"
+              sx={{ cursor: "pointer" }}
+            >
+              Forgot Password?
+            </Typography>
 
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore the Next.js 13 playground.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+            <Button variant="contained" type="submit">
+              Sign In
+            </Button>
+          </FormControl>
+        </form>
+      </Grid>
+    </Box>
+  );
 }

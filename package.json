@@ -9,16 +9,26 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/core": "^11.0.0",
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.14.11",
+    "@mui/material": "^5.14.11",
+    "@mui/x-date-pickers": "^6.16.0",
+    "dayjs": "^1.11.10",
+    "next": "latest",
+    "qrcode": "^1.5.3",
     "react": "latest",
     "react-dom": "latest",
-    "next": "latest"
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
-    "typescript": "latest",
-    "@types/react": "latest",
     "@types/node": "latest",
+    "@types/qrcode": "^1.5.2",
+    "@types/react": "latest",
     "@types/react-dom": "latest",
     "eslint": "latest",
-    "eslint-config-next": "latest"
+    "eslint-config-next": "latest",
+    "typescript": "latest"
   }
 }

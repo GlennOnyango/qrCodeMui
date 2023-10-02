@@ -1,9 +1,10 @@
-.main {
-background-image: url('../public/backgrounds/subtle-prism.svg');
+.forms {
+background-image: url('../../public/backgrounds/subtle-prism.svg');
 height: 100vh;
 background-repeat: no-repeat;
 background-size: cover;
 }
+  
 
 .glass{
   /* From https://css.glass */
