@@ -2,33 +2,29 @@
 
 import {
   Avatar,
-  Box,
-  Button,
   Card,
   CardActions,
-  CardContent,
   CardHeader,
   CardMedia,
   Grid,
   IconButton,
   IconButtonProps,
-  Stack,
-  Typography,
 } from "@mui/material";
 import DownloadIcon from "@mui/icons-material/Download";
 import ZoomInIcon from "@mui/icons-material/ZoomIn";
-import Image from "next/image";
-import { purple, red } from "@mui/material/colors";
+import { purple } from "@mui/material/colors";
 import { styled } from "@mui/material/styles";
-import Collapse from "@mui/material/Collapse";
-import FavoriteIcon from "@mui/icons-material/Favorite";
-import ShareIcon from "@mui/icons-material/Share";
+import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
 
 type Props = {
   Name: string;
+  KRA: string;
+  Validity: number;
+  date: number;
+  expiry: number;
 };
 
 interface ExpandMoreProps extends IconButtonProps {
@@ -46,7 +42,13 @@ const ExpandMore = styled((props: ExpandMoreProps) => {
   }),
 }));
 
-export default function QRImageDisplay({ Name }: Props) {
+export default function QRImageDisplay({
+  Name,
+  KRA,
+  Validity,
+  date,
+  expiry,
+}: Props) {
   const [expanded, setExpanded] = useState<boolean>(false);
 
   const handleExpandClick = () => {
@@ -54,7 +56,7 @@ export default function QRImageDisplay({ Name }: Props) {
   };
 
   return (
-    <Grid item xs={6}>
+    <Grid item xs={4}>
       <Card sx={{ maxWidth: 345 }}>
         <CardHeader
           avatar={
@@ -77,11 +79,14 @@ export default function QRImageDisplay({ Name }: Props) {
           alt="Paella dish"
         />
         <CardActions disableSpacing>
-          <IconButton aria-label="add to favorites">
+          <IconButton aria-label="download">
             <DownloadIcon />
           </IconButton>
+          <IconButton aria-label="validity">
+            <CheckCircleOutlineIcon color={Validity === 1 ? 'success' : "error"}/>
+          </IconButton>
           <IconButton
-            aria-label="share"
+            aria-label="zoom"
             component="a"
             href={`/qrImages/${Name}.png`}
             LinkComponent={"a"}
