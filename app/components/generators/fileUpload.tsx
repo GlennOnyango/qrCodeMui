@@ -10,7 +10,16 @@ type CompanyValues = {
 };
 
 type Props = {
-  sendImages:(e:string[])=>void;
+  sendImages:(e:companyDetails[])=>void;
+};
+
+
+type companyDetails = {
+  Name: string;
+  KRA: string;
+  Validity: number;
+  date: number;
+  expiry: number;
 };
 
 export default function QRFile({ sendImages }: Props) {
@@ -18,7 +27,7 @@ export default function QRFile({ sendImages }: Props) {
   const [formValues, setFormValues] = useState<CompanyValues>({
     excel_file: null,
   });
-  const[nameArrayComplete,setNameArrayComplete] = useState<string[]>([]);
+  const[nameArrayComplete,setNameArrayComplete] = useState<companyDetails[]>([]);
   const fileUpload = (e: any) => {
     setFormValues({
       ...formValues,
@@ -36,11 +45,9 @@ export default function QRFile({ sendImages }: Props) {
 
   useEffect(() => {
     if (data.message) {
-      console.log(data.message);
-      let nameArray:string[] = [];
+      const nameArray:companyDetails[] = [];
       data.message.forEach((e: any) => {
-        console.log(e.Name)
-        nameArray.push(e.Name);
+        nameArray.push(e);
       });
       setNameArrayComplete(nameArray)
     }

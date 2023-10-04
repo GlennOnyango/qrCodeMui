@@ -1,53 +1,39 @@
 "use client";
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Grid,
-  Stack,
-  Typography,
-} from "@mui/material";
-import FileUploadComponent from "../components/ui/FileUpload";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { Box, Button, ButtonGroup, Stack, Typography } from "@mui/material";
+import { useEffect, useState } from "react";
 import QRFile from "../components/generators/fileUpload";
 import QRForm from "../components/generators/formUpload";
-import QRImageDisplay from "../components/ui/imageDisplay";
-
-import styles from "./page.module.css";
-import { useFetch } from "../customHooks";
 import { PageContainer } from "../components/navbars/PageContainer";
 import Image from "next/image";
 
-type CompanyValues = {
-  excel_file: File | null;
+type companyDetails = {
+  Name: string;
+  KRA: string;
+  Validity: number;
+  date: number;
+  expiry: number;
 };
 
 export default function QR() {
   const [formQr, setForm] = useState(true);
-  const [imageNames, setImageNames] = useState<string[]>([]);
-  const [data, callApi, isLoading] = useFetch();
+  const [imageNames, setImageNames] = useState<companyDetails[]>([]);
 
-  const uploadedNames = (e: string[]) => {
+  const uploadedNames = (e: companyDetails[]) => {
     setImageNames(e);
   };
-
-  useEffect(() => {
-    if (data.companies?.length > 0) {
-      let nameArray: string[] = [];
-      data.companies.forEach((e: any) => {
-        nameArray.push(e.Name);
-      });
-      setImageNames(nameArray);
-    }
-    if (data.fetch === 0) {
-      callApi("/qrgen");
-    }
-  }, [data]);
 
   return (
     <PageContainer>
       <Stack direction="row" spacing={0}>
-        <Box padding={4} width={"50vw"} height={"100vh"} display={"flex"}flexDirection={"column"} justifyContent={"center"} alignItems={"center"}>
+        <Box
+          padding={4}
+          width={"50vw"}
+          height={"90vh"}
+          display={"flex"}
+          flexDirection={"column"}
+          justifyContent={"center"}
+          alignItems={"center"}
+        >
           <Image
             src="/pakpro-logo.png"
             width={300}
@@ -63,7 +49,7 @@ export default function QR() {
           </Typography>
         </Box>
 
-        <Box padding={4} width={"50vw"} height={"100vh"}>
+        <Box padding={4} width={"50vw"} height={"90vh"}>
           <Box
             display={"flex"}
             alignContent={"center"}
