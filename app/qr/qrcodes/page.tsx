@@ -1,4 +1,5 @@
 "use client";
+import FilterCard from "@/app/components/FilterCard";
 import { PageContainer } from "@/app/components/navbars/PageContainer";
 import QRImageDisplay from "@/app/components/ui/imageDisplay";
 import QrContext from "@/app/context/QrContext";
@@ -41,21 +42,14 @@ export default function QRCodesPage() {
   return (
     <PageContainer>
       <Box
-        padding={0}
         overflow={"auto"}
         height={"90vh"}
-        bgcolor={"transparent "}
-        flexGrow={1}
+        pl={4}
+        pr={2}
+        pt={5}
       >
-        <Typography variant="h4" marginBottom={2} textAlign={"center"}>
-          Company Qr codes
-        </Typography>
-        <Grid
-          container
-          spacing={2}
-          p={2}
-          overflow={"auto"}
-        >
+        <Grid container spacing={2} overflow={"auto"}>
+          <FilterCard />
           {companyArrayPerm.map((e) => {
             return (
               <QRImageDisplay
