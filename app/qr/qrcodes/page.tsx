@@ -1,9 +1,10 @@
 "use client";
 import { PageContainer } from "@/app/components/navbars/PageContainer";
 import QRImageDisplay from "@/app/components/ui/imageDisplay";
+import QrContext from "@/app/context/QrContext";
 import { useFetch } from "@/app/customHooks";
 import { Box, Grid, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useMemo, useState } from "react";
 
 type CompanyObject = {
   Name: string;
@@ -14,6 +15,7 @@ type CompanyObject = {
 };
 
 export default function QRCodesPage() {
+  const qrcontext = useContext(QrContext);
   const [imageNames, setImageNames] = useState<CompanyObject[]>([]);
   const [data, callApi, isLoading] = useFetch();
 
@@ -30,6 +32,12 @@ export default function QRCodesPage() {
     }
   }, [data]);
 
+  const companyArrayPerm = useMemo(() => {
+    return qrcontext.companyArray.length > 0
+      ? qrcontext.companyArray
+      : imageNames;
+  }, [qrcontext.companyArray, imageNames]);
+
   return (
     <PageContainer>
       <Box padding={4} overflow={"auto"} bgcolor={"transparent"} flexGrow={1}>
@@ -37,7 +45,7 @@ export default function QRCodesPage() {
           Company Qr codes
         </Typography>
         <Grid container spacing={2} p={2} overflow={"auto"}>
-          {imageNames.map((e) => {
+          {companyArrayPerm.map((e) => {
             return (
               <QRImageDisplay
                 Name={e.Name}
