@@ -1,3 +1,4 @@
+'use client';
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 
@@ -26,9 +27,15 @@ const QR:QRType = {
 
 const QrContext = React.createContext(QR);
 
-export const AuthContextProvider = ({ children }: Props) => {
+export const QrContextProvider = ({ children }: Props) => {
   const router = useRouter();
   const [user, setUser] = useState<CompanyData[]>([]);
+
+  useEffect(() => {
+    if (user.length > 0) {
+      router.push("/qr/qrcodes");
+    }
+  }, [user]);
 
   return (
     <QrContext.Provider

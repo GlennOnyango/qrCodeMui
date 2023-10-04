@@ -1,17 +1,15 @@
 "use client";
 import { Box, Button } from "@mui/material";
 import FileUploadComponent from "../ui/FileUpload";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState,useContext } from "react";
 import Image from "next/image";
 import { usePost } from "@/app/customHooks";
+import QrContext from "@/app/context/QrContext";
 
 type CompanyValues = {
   excel_file: File | null;
 };
 
-type Props = {
-  sendImages:(e:companyDetails[])=>void;
-};
 
 
 type companyDetails = {
@@ -22,7 +20,8 @@ type companyDetails = {
   expiry: number;
 };
 
-export default function QRFile({ sendImages }: Props) {
+export default function QRFile() {
+  const Qrcontext = useContext(QrContext);
   const [data, callApi, isLoading, errMessage] = usePost("cbsua", true);
   const [formValues, setFormValues] = useState<CompanyValues>({
     excel_file: null,
@@ -44,9 +43,9 @@ export default function QRFile({ sendImages }: Props) {
   };
 
   useEffect(() => {
-    if (data.message) {
+    if (data.companies) {
       const nameArray:companyDetails[] = [];
-      data.message.forEach((e: any) => {
+      data.companies.forEach((e: any) => {
         nameArray.push(e);
       });
       setNameArrayComplete(nameArray)
@@ -55,7 +54,7 @@ export default function QRFile({ sendImages }: Props) {
 
 
   useEffect(()=>{
-    sendImages(nameArrayComplete)
+    Qrcontext.setCompanyArray(nameArrayComplete)
   },[nameArrayComplete]);
 
   return (

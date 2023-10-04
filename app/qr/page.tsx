@@ -74,9 +74,7 @@ export default function QR() {
             </ButtonGroup>
           </Box>
 
-          <Box pt={4}>
-            {formQr ? <QRFile sendImages={uploadedNames} /> : <QRForm />}
-          </Box>
+          <Box pt={4}>{formQr ? <QRFile /> : <QRForm />}</Box>
         </Box>
       </Stack>
     </PageContainer>

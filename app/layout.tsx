@@ -4,6 +4,7 @@ import ThemeRegistry from "./components/ThemeRegistry/ThemeRegistry";
 
 import type { Metadata } from "next";
 import { LocalizationContextProvider } from "./components/context/LocalizationContext";
+import { QrContextProvider } from "./context/QrContext";
 
 export const metadata: Metadata = {
   title: "PAKPRO Certification",
@@ -21,7 +22,9 @@ export default function RootLayout({
         {" "}
         <ThemeRegistry>
           <LocalizationContextProvider>
-            <Box sx={{}}>{children}</Box>
+            <QrContextProvider>
+              <Box sx={{}}>{children}</Box>
+            </QrContextProvider>
           </LocalizationContextProvider>
         </ThemeRegistry>
       </body>
