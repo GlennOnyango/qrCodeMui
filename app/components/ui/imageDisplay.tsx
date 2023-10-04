@@ -4,6 +4,7 @@ import {
   Avatar,
   Card,
   CardActions,
+  CardContent,
   CardHeader,
   CardMedia,
   Grid,
@@ -18,6 +19,7 @@ import CheckCircleOutlineIcon from "@mui/icons-material/CheckCircleOutline";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useState } from "react";
+import Image from "next/image";
 
 type Props = {
   Name: string;
@@ -71,19 +73,23 @@ export default function QRImageDisplay({
           }
           title={Name}
         />
-        <CardMedia
-          component="img"
-          height="200"
-          sx={{ objectFit: "contain" }}
-          image={`/qrImages/${Name}.png`}
-          alt="Paella dish"
-        />
+
+        <CardContent sx={{backgroundColor:"whitesmoke",display:"flex",justifyContent:"center"}}>
+          <Image
+            src={`/qrImages/${Name}.png`}
+            width={200}
+            height={200}
+            alt={Name}
+          />
+        </CardContent>
         <CardActions disableSpacing>
           <IconButton aria-label="download">
             <DownloadIcon />
           </IconButton>
           <IconButton aria-label="validity">
-            <CheckCircleOutlineIcon color={Validity === 1 ? 'success' : "error"}/>
+            <CheckCircleOutlineIcon
+              color={Validity === 1 ? "success" : "error"}
+            />
           </IconButton>
           <IconButton
             aria-label="zoom"
