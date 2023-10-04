@@ -2,7 +2,6 @@ import path from "path";
 import fs from "fs/promises";
 import QRCode from "qrcode";
 import xlsx from "xlsx";
-import QR from "@/app/qr/page";
 import { createHmac } from "crypto";
 export async function GET(request: Request) {
   const filePath = path.join(
