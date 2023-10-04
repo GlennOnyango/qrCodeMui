@@ -40,11 +40,22 @@ export default function QRCodesPage() {
 
   return (
     <PageContainer>
-      <Box padding={4} overflow={"auto"} bgcolor={"transparent"} flexGrow={1}>
-        <Typography variant="h4" marginBottom={4} textAlign={"center"}>
+      <Box
+        padding={0}
+        overflow={"auto"}
+        height={"90vh"}
+        bgcolor={"transparent "}
+        flexGrow={1}
+      >
+        <Typography variant="h4" marginBottom={2} textAlign={"center"}>
           Company Qr codes
         </Typography>
-        <Grid container spacing={2} p={2} overflow={"auto"}>
+        <Grid
+          container
+          spacing={2}
+          p={2}
+          overflow={"auto"}
+        >
           {companyArrayPerm.map((e) => {
             return (
               <QRImageDisplay

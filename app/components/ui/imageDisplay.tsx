@@ -57,7 +57,7 @@ export default function QRImageDisplay({
 
   return (
     <Grid item xs={4}>
-      <Card sx={{ maxWidth: 345 }}>
+      <Card>
         <CardHeader
           avatar={
             <Avatar sx={{ bgcolor: purple[500] }} aria-label="recipe">
