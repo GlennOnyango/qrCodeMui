@@ -94,7 +94,7 @@ const superFunction = async (
     .update("@%*haw12fgasd^8db129h1c k31c[1cv75x3pnee0e.e#@pe23,")
     .digest("hex");
 
-  const qrLInk = `${host}/api/qr-validate/${encryptedValue}`;
+  const qrLInk = `${host}/verify/${encryptedValue}`;
 
   const filePath = path.join(process.cwd(), "public", "qrImages", name);
 
