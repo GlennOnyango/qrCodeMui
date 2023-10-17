@@ -1,66 +1,18 @@
-import {
-  AppBar,
-  Box,
-  Button,
-  IconButton,
-  Stack,
-  Toolbar,
-  Typography,
-} from "@mui/material";
-import React, { useContext } from "react";
+import { Stack } from "@mui/material";
+import React from "react";
 
 import styles from "../../page.module.css";
-import QrContext from "@/app/context/QrContext";
+import { HomeNav } from "./homeNav";
+import LandingNav from "./landingNav";
 type PageContainerProps = {
   children: React.ReactNode;
+  login?: boolean;
 };
 
-export const PageContainer = ({ children }: PageContainerProps) => {
-  const qrcontext = useContext(QrContext);
-  const handleContext = () => {
-    qrcontext.setCompanyArray([]);
-  };
+export const PageContainer = ({ children, login }: PageContainerProps) => {
   return (
-    <Stack direction="column" spacing={0} className={styles.main}>
-      <Box >
-        <AppBar position="static" sx={{ backgroundColor: "transparent" }}>
-          <Toolbar>
-            <Typography
-              variant="h6"
-              color={"secondary"}
-              component="div"
-              sx={{ flexGrow: 1 }}
-            >
-              PAKPRO Certification
-            </Typography>
-            <Button
-              color="secondary"
-              LinkComponent={"a"}
-              onClick={handleContext}
-              href="/qr"
-            >
-              Generate Qr codes
-            </Button>
-            <Button
-              color="secondary"
-              LinkComponent={"a"}
-              onClick={handleContext}
-              href="/qr/qrcodes"
-            >
-              Display Qr codes
-            </Button>
-            <Button
-              color="secondary"
-              LinkComponent={"a"}
-              onClick={handleContext}
-              href="/qr/qrcodes"
-            >
-              Uploaded excel sheets
-            </Button>
-            <Button color="secondary">Logout</Button>
-          </Toolbar>
-        </AppBar>
-      </Box>
+    <Stack direction="column" spacing={0} padding={4} className={styles.main}>
+      {login ? <HomeNav /> : <LandingNav />}
       {children}
     </Stack>
   );

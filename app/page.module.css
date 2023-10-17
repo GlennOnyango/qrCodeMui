@@ -1,8 +1,14 @@
 .main {
-background-image: url('../public/backgrounds/subtle-prism.svg');
+/* background-image: url('../public/backgrounds/subtle-prism.svg'); */
 height: 100vh;
 background-repeat: no-repeat;
 background-size: cover;
+}
+
+.backgroundRight {
+  background-image: url('../public/backgrounds/good.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .glass{
