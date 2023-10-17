@@ -1,8 +1,11 @@
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
+import { useRouter } from "next/navigation";
+
 import React from "react";
 
 const pages = ["Products", "Pricing", "About Us", "Contact Us"];
 export default function LandingNav() {
+  const router = useRouter();
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -63,15 +66,16 @@ export default function LandingNav() {
               variant="contained"
               size="small"
               sx={{ marginRight: "4px" }}
+              onClick={() => router.push("/signin")}
             >
-              sign in
+              Sign in
             </Button>
             <Button
               color="primary"
               size="small"
               variant="contained"
             >
-              sign up
+              Sign up
             </Button>
           </Box>
         </Toolbar>

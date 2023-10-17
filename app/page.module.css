@@ -11,6 +11,12 @@ background-size: cover;
   background-size: cover;
 }
 
+.backgroundCustomer {
+  background-image: url('../public/backgrounds/customer.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 .glass{
   /* From https://css.glass */
 background: rgba(255, 255, 255, 0.2);

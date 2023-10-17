@@ -1,9 +1,10 @@
-import { Stack } from "@mui/material";
+import { Box, Stack } from "@mui/material";
 import React from "react";
 
 import styles from "../../page.module.css";
 import { HomeNav } from "./homeNav";
 import LandingNav from "./landingNav";
+import Footer from "../footer";
 type PageContainerProps = {
   children: React.ReactNode;
   login?: boolean;
@@ -14,6 +15,15 @@ export const PageContainer = ({ children, login }: PageContainerProps) => {
     <Stack direction="column" spacing={0} padding={4} className={styles.main}>
       {login ? <HomeNav /> : <LandingNav />}
       {children}
+
+      <Box
+        sx={{ flexGrow: 1 }}
+        bgcolor={"transparent"}
+        paddingX={6}
+        mt={2}
+      >
+        <Footer />
+      </Box>
     </Stack>
   );
 };
