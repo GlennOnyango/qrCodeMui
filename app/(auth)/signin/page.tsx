@@ -3,14 +3,14 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import {
-    Box,
-    Button,
-    FormControl,
-    Grid,
-    OutlinedInput,
-    InputAdornment,
-    IconButton,
-    Typography,
+  Box,
+  Button,
+  FormControl,
+  Grid,
+  OutlinedInput,
+  InputAdornment,
+  IconButton,
+  Typography,
 } from "@mui/material";
 import { usePost } from "../../customHooks";
 
@@ -62,7 +62,7 @@ export default function Home() {
   };
 
   return (
-    <PageContainer>
+    <PageContainer footerShow>
       <Box
         className={styles.main}
         sx={{
@@ -70,8 +70,10 @@ export default function Home() {
           alignItems: "center",
           justifyContent: "center",
           overflowY: "auto",
+          height: "80vh",
         }}
         margin={0}
+        padding={4}
       >
         <Grid container spacing={2} className={styles.glass} width={"50vh"}>
           <form onSubmit={handleSubmit} style={{ width: "100%" }}>

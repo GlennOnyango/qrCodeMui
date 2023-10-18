@@ -1,3 +1,4 @@
+"use client"
 import { AppBar, Box, Button, Toolbar, Typography } from "@mui/material";
 import { useRouter } from "next/navigation";
 

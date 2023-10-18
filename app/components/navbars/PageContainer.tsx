@@ -8,21 +8,27 @@ import Footer from "../footer";
 type PageContainerProps = {
   children: React.ReactNode;
   login?: boolean;
+  footerShow?: boolean;
 };
 
-export const PageContainer = ({ children, login }: PageContainerProps) => {
+export const PageContainer = ({
+  children,
+  login,
+  footerShow,
+}: PageContainerProps) => {
   return (
-    <Stack direction="column" spacing={0} padding={4} className={styles.main}>
+    <Stack
+      direction="column"
+      spacing={0}
+      padding={4}
+      className={styles.main}
+      bgcolor={"#fafafa"}
+    >
       {login ? <HomeNav /> : <LandingNav />}
       {children}
 
-      <Box
-        sx={{ flexGrow: 1 }}
-        bgcolor={"transparent"}
-        paddingX={6}
-        mt={2}
-      >
-        <Footer />
+      <Box sx={{ flexGrow: 1 }} bgcolor={"transparent"} paddingX={6} mt={2}>
+        {footerShow ? null : <Footer />}
       </Box>
     </Stack>
   );
