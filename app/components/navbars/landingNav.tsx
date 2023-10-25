@@ -75,6 +75,7 @@ export default function LandingNav() {
               color="primary"
               size="small"
               variant="contained"
+              onClick={() => router.push("/signup")}
             >
               Sign up
             </Button>
