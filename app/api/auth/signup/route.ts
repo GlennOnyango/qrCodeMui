@@ -1,6 +1,7 @@
 import z from "zod";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/model/users";
+import bycrpt from "bcrypt";
 
 const schema = z.object({
   firstname: z.string().min(1, "First name cannot be empty"),
@@ -28,8 +29,12 @@ export async function POST(request: Request) {
   } else {
     //Do something with the data
     try {
+      const createPassword = {
+        ...data,
+        password: await bycrpt.hash(data.password, 10),
+      };
       const user = await User.create(
-        data
+        createPassword
       ); /* create a new model in the database */
       return new Response(JSON.stringify(user), { status: 200 });
     } catch (error) {
