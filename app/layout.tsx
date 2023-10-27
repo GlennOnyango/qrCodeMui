@@ -20,13 +20,13 @@ export default function RootLayout({
     <html lang="en">
       <body style={{ marginTop: 0 }}>
         {" "}
-        <ThemeRegistry>
-          <LocalizationContextProvider>
-            <QrContextProvider>
-              <Box sx={{}}>{children}</Box>
-            </QrContextProvider>
-          </LocalizationContextProvider>
-        </ThemeRegistry>
+          <ThemeRegistry>
+            <LocalizationContextProvider>
+              <QrContextProvider>
+                <Box>{children}</Box>
+              </QrContextProvider>
+            </LocalizationContextProvider>
+          </ThemeRegistry>
       </body>
     </html>
   );

@@ -35,6 +35,7 @@ export default function LandingNav() {
               textDecoration: "none",
               flexGrow: 1,
             }}
+            onClick={() => router.push("/")}
           >
             Company QR
           </Typography>

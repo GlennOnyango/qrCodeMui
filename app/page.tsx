@@ -4,6 +4,7 @@ import { PageContainer } from "./components/navbars/PageContainer";
 
 export default function Home() {
   return (
+
     <PageContainer>
       <Stack direction={"row"} paddingX={4} pt={2}>
         <Box

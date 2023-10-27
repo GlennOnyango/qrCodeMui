@@ -1,45 +1,41 @@
 "use client";
-import { useEffect, useState } from "react";
+import { use, useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import {
   Box,
   Button,
   FormControl,
-  Grid,
   OutlinedInput,
   InputAdornment,
   IconButton,
   Typography,
   Stack,
 } from "@mui/material";
-import { usePost } from "../../customHooks";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { PageContainer } from "../../components/navbars/PageContainer";
+import stepperImage from "../../../public/resources/createAccountStepper.svg";
+import Image from "next/image";
+import { useMutation } from "react-query";
+import axios from "axios";
 
-export default function Home() {
+export default function Page() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [data, callApi, isLoading, errMessage] = usePost();
   const [formValues, setFormValues] = useState({
+    firstName: "",
+    lastName: "",
     email: "",
+    phoneNumber: "",
     password: "",
   });
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+  const mutation = useMutation((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    callApi(formValues, "/auth/signin");
-    //ctx.login(formValues);
-  };
-
-  useEffect(() => {
-    if (data.email === "glenntedd@gmail.com") {
-      console.log("done");
-
-      router.push("/qr");
-    }
-  }, [data]);
+    return axios.post("/api/auth/signup", formValues);
+  });
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -69,14 +65,13 @@ export default function Home() {
         sx={{
           display: "flex",
           alignItems: "center",
-          justifyContent: "center",
+          justifyContent: "space-between",
           overflowY: "auto",
-          height: "80vh",
         }}
         margin={0}
         padding={4}
       >
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={mutation.mutate}>
           <Stack
             spacing={4}
             direction={"column"}
@@ -84,7 +79,9 @@ export default function Home() {
             width={"50vw"}
             className={styles.glass}
           >
-            <Typography variant="h4" textAlign="center">Create Account</Typography>
+            <Typography variant="h4" textAlign="center">
+              Create Account
+            </Typography>
             <Stack direction={"row"} spacing={2}>
               <FormControl variant="outlined" fullWidth>
                 <Typography component="label" fontSize="16px" lineHeight="2">
@@ -93,9 +90,9 @@ export default function Home() {
                 <OutlinedInput
                   required
                   id="outlined-required"
-                  type="email"
-                  name="email"
-                  placeholder="abc@gmail.com"
+                  type="text"
+                  name="firstName"
+                  placeholder="john"
                   onChange={handleInputChange}
                   sx={{
                     borderRadius: "13px",
@@ -110,9 +107,9 @@ export default function Home() {
                 <OutlinedInput
                   required
                   id="outlined-required"
-                  type="email"
-                  name="email"
-                  placeholder="abc@gmail.com"
+                  type="text"
+                  name="lastName"
+                  placeholder="Doe"
                   onChange={handleInputChange}
                   sx={{
                     borderRadius: "13px",
@@ -148,9 +145,9 @@ export default function Home() {
                 <OutlinedInput
                   required
                   id="outlined-required"
-                  type="email"
-                  name="email"
-                  placeholder="abc@gmail.com"
+                  type="text"
+                  name="phoneNumber"
+                  placeholder="07********"
                   onChange={handleInputChange}
                   sx={{
                     borderRadius: "13px",
@@ -202,6 +199,24 @@ export default function Home() {
             </Button>
           </Stack>
         </form>
+
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "flex-end",
+            overflowY: "hidden",
+          }}
+          margin={0}
+          padding={4}
+        >
+          <Image
+            src={stepperImage}
+            alt="create account stepper"
+            width={350}
+            height={350}
+          />
+        </Box>
       </Box>
     </PageContainer>
   );

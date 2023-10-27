@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="415" height="426" viewBox="0 0 415 426">
+  <defs>
+    <linearGradient id="linear-gradient" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#425fb4"/>
+      <stop offset="1" stop-color="#425fb4"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="0.5" x2="0.5" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#425fb4"/>
+      <stop offset="1" stop-color="#cdcfe7"/>
+    </linearGradient>
+  </defs>
+  <g id="Group_28" data-name="Group 28" transform="translate(-1188 -327)">
+    <text id="Step_1_-Professional_Details" data-name="Step 1 -Professional Details" transform="translate(1261 360)" fill="#425fb4" font-size="20" font-family="IBM Plex Sans, sans-serif"><tspan x="0" y="0">Step 1 - Professional Details</tspan></text>
+    <text id="Step_2_-_Verify_Email" data-name="Step 2 - Verify Email" transform="translate(1261 547)" fill="#425fb4" font-size="20" font-family="IBM Plex Sans, sans-serif"><tspan x="0" y="0">Step 2 - Verify Email</tspan></text>
+    <text id="Step_3_-_Upload_Company_Documents" data-name="Step 3 - Upload Company Documents" transform="translate(1261 734)" fill="#9fa2b0" font-size="20" font-family="IBM Plex Sans, sans-serif"><tspan x="0" y="0">Step 3 - Upload Company Documents</tspan></text>
+    <g id="Group_1090" data-name="Group 1090">
+      <g id="Group_26" data-name="Group 26" transform="translate(25 -18)">
+        <g id="Group_23" data-name="Group 23">
+          <circle id="Ellipse_12" data-name="Ellipse 12" cx="26" cy="26" r="26" transform="translate(1163 345)" fill="#425fb4" opacity="0.08"/>
+          <circle id="Ellipse_9" data-name="Ellipse 9" cx="13" cy="13" r="13" transform="translate(1176 358)" fill="#fff"/>
+          <circle id="Ellipse_13" data-name="Ellipse 13" cx="9" cy="9" r="9" transform="translate(1180 362)" fill="#425fb4"/>
+        </g>
+      </g>
+      <g id="Group_24" data-name="Group 24" transform="translate(25 7)">
+        <circle id="Ellipse_16" data-name="Ellipse 16" cx="26" cy="26" r="26" transform="translate(1163 507)" fill="#425fb4" opacity="0.08"/>
+        <circle id="Ellipse_15" data-name="Ellipse 15" cx="13" cy="13" r="13" transform="translate(1176 520)" fill="#fff"/>
+        <path id="Path_15" data-name="Path 15" d="M9,0A9,9,0,1,1,0,9,9,9,0,0,1,9,0Z" transform="translate(1180 524)" fill="#425fb4"/>
+      </g>
+      <g id="Group_27" data-name="Group 27" transform="translate(25 194)">
+        <circle id="Ellipse_16-2" data-name="Ellipse 16" cx="26" cy="26" r="26" transform="translate(1163 507)" fill="#425fb4" opacity="0.08"/>
+        <circle id="Ellipse_15-2" data-name="Ellipse 15" cx="13" cy="13" r="13" transform="translate(1176 520)" fill="#fff"/>
+        <circle id="Ellipse_14" data-name="Ellipse 14" cx="9" cy="9" r="9" transform="translate(1180 524)" fill="#cdcfe7"/>
+      </g>
+      <rect id="Rectangle_50" data-name="Rectangle 50" width="3" height="183" transform="translate(1213 353)" fill="url(#linear-gradient)"/>
+      <path id="Path_105" data-name="Path 105" d="M0,0H3V183H0V0Z" transform="translate(1213 540)" fill="url(#linear-gradient-2)"/>
+    </g>
+  </g>
+</svg>
