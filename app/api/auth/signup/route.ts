@@ -9,7 +9,7 @@ const schema = z.object({
   email: z.string().email("Invalid email"),
   password: z.string().min(8, "Password must be at least 8 characters"),
   phonenumber: z
-    .number()
+    .string()
     .min(10, "Invalid phone number")
     .max(12, "Invalid phone number"),
 });

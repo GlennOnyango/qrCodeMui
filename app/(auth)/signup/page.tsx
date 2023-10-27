@@ -1,5 +1,5 @@
 "use client";
-import { use, useState } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import {
@@ -25,10 +25,10 @@ export default function Page() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
   const [formValues, setFormValues] = useState({
-    firstName: "",
-    lastName: "",
+    firstname: "",
+    lastname: "",
     email: "",
-    phoneNumber: "",
+    phonenumber: "",
     password: "",
   });
 
@@ -91,7 +91,7 @@ export default function Page() {
                   required
                   id="outlined-required"
                   type="text"
-                  name="firstName"
+                  name="firstname"
                   placeholder="john"
                   onChange={handleInputChange}
                   sx={{
@@ -108,7 +108,7 @@ export default function Page() {
                   required
                   id="outlined-required"
                   type="text"
-                  name="lastName"
+                  name="lastname"
                   placeholder="Doe"
                   onChange={handleInputChange}
                   sx={{
@@ -146,7 +146,7 @@ export default function Page() {
                   required
                   id="outlined-required"
                   type="text"
-                  name="phoneNumber"
+                  name="phonenumber"
                   placeholder="07********"
                   onChange={handleInputChange}
                   sx={{
