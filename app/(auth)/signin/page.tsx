@@ -12,33 +12,31 @@ import {
   IconButton,
   Typography,
 } from "@mui/material";
-import { usePost } from "../../customHooks";
 
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { PageContainer } from "../../components/navbars/PageContainer";
+import { useMutation } from "react-query";
+import axios from "axios";
 
 export default function Home() {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
-  const [data, callApi, isLoading, errMessage] = usePost();
   const [formValues, setFormValues] = useState({
     email: "",
     password: "",
   });
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+
+  const mutation = useMutation((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    callApi(formValues, "/auth/signin");
-    //ctx.login(formValues);
-  };
+    return axios.post("/api/auth/signin", formValues);
+  });
 
   useEffect(() => {
-    if (data.email === "glenntedd@gmail.com") {
-      console.log("done");
-
-      router.push("/qr");
+    if (mutation.isSuccess) {
+      router.push("/app");
     }
-  }, [data]);
+  }, [mutation.isSuccess,mutation.isError]);
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -76,7 +74,7 @@ export default function Home() {
         padding={4}
       >
         <Grid container spacing={2} className={styles.glass} width={"50vh"}>
-          <form onSubmit={handleSubmit} style={{ width: "100%" }}>
+          <form onSubmit={mutation.mutate} style={{ width: "100%" }}>
             <FormControl variant="outlined" fullWidth sx={{ padding: "20px" }}>
               <Typography component="label" fontSize="16px" lineHeight="2">
                 Your Email Address

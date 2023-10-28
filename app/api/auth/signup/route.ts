@@ -12,6 +12,15 @@ const schema = z.object({
     .string()
     .min(10, "Invalid phone number")
     .max(12, "Invalid phone number"),
+}).refine((data) => {
+  //Check if the email already exists in the database
+  User.findOne({ email: data.email }).then((user) => {
+    if (user) {
+      return false;
+    } else {
+      return true;
+    }
+  });
 });
 
 export async function POST(request: Request) {

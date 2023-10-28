@@ -2,6 +2,7 @@ import bycrpt from "bcrypt";
 import z from "zod";
 import dbConnect from "@/lib/dbConnect";
 import User from "@/model/users";
+import jwt from "jsonwebtoken";
 
 const schema = z.object({
   email: z.string().email("Invalid email"),
@@ -31,7 +32,15 @@ export async function POST(request: Request) {
             status: 400,
           });
         } else {
-          return new Response(JSON.stringify(user), { status: 200 });
+          const token = jwt.sign(
+            { id: user._id, email: user.email },
+            process.env.JWT_SECRET!,
+            { expiresIn: "1d" }
+          );
+
+          return new Response(JSON.stringify({ token: token }), {
+            status: 200,
+          });
         }
       }
     } catch (error) {}
